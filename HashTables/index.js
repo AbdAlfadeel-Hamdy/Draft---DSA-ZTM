@@ -24,6 +24,7 @@ class HashTable {
       return bucket ? bucket[1] : undefined;
     }
   }
+
   keys() {
     const keysArray = [];
     for (const el of this.data) {
