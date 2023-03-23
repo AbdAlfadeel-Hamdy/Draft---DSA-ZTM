@@ -5,6 +5,8 @@
 //     if (charMap[el] === 2) return el;
 //   }
 // };
+
+// Solution (2)
 const firstRecurringCharacter = (arr) => {
   const charMap = {};
   for (const el of arr) {
