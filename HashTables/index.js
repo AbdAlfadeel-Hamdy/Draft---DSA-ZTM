@@ -24,13 +24,26 @@ class HashTable {
       return bucket ? bucket[1] : undefined;
     }
   }
+  keys() {
+    const keysArray = [];
+    for (const el of this.data) {
+      if (el) {
+        for (const bucket of el) {
+          keysArray.push(bucket[0]);
+        }
+      }
+    }
+    return keysArray;
+  }
 }
 
-const myHashTable = new HashTable(50);
+const myHashTable = new HashTable(2);
 myHashTable.set("grapes", 1000);
 myHashTable.set("apples", 200);
 myHashTable.set("banana", 3);
+myHashTable.set("orange", 3);
 console.log(myHashTable.get("grapes"));
 console.log(myHashTable.get("banana"));
 console.log(myHashTable.get("apples"));
 console.log(myHashTable.get("oranges"));
+console.log(myHashTable.keys());
