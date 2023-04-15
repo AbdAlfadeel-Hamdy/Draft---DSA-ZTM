@@ -50,10 +50,10 @@ class LinkedList {
       return this;
     }
     // Middle insertion
-    let currentNode = this.head.next;
-    let counter = 1;
+    let currentNode = this.head;
+    let counter = 0;
     while (currentNode) {
-      if (counter === index) {
+      if (counter === index - 1) {
         newNode.next = currentNode.next;
         currentNode.next = newNode;
         this.length++;
