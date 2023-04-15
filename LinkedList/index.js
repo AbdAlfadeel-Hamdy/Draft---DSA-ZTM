@@ -42,22 +42,20 @@ class LinkedList {
     // Out of range index
     if (index >= this.length) return this.append(value);
     const newNode = new Node(value);
-    // Head insertion
-    if (index === 0) {
-      newNode.next = this.head;
-      this.head = newNode;
-      this.length++;
-      return this;
-    }
-    // Middle insertion
+    const targetNode = this.traverse(index);
+    newNode.next = targetNode.next;
+    targetNode.next = newNode;
+    if (index === 0) this.head = newNode;
+    this.length++;
+    return this;
+  }
+
+  traverse(index) {
     let currentNode = this.head;
     let counter = 0;
     while (currentNode) {
       if (counter === index - 1) {
-        newNode.next = currentNode.next;
-        currentNode.next = newNode;
-        this.length++;
-        return this;
+        return currentNode;
       }
       currentNode = currentNode.next;
       counter++;
