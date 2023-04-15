@@ -38,28 +38,35 @@ class LinkedList {
     return result;
   }
 
+  traverse(index) {
+    if (index === 0) return this.head;
+    let currentNode = this.head;
+    let counter = 0;
+    while (currentNode) {
+      if (counter === index) return currentNode;
+      currentNode = currentNode.next;
+      counter++;
+    }
+  }
+
   insert(index, value) {
-    // Out of range index
+    // Out of range OR insert to the end
     if (index >= this.length) return this.append(value);
+    // Insert to the beginning
+    if (index === 0) return this.prepend(value);
+    // Regular insertion
     const newNode = new Node(value);
-    const targetNode = this.traverse(index);
+    const targetNode = this.traverse(index - 1);
     newNode.next = targetNode.next;
     targetNode.next = newNode;
-    if (index === 0) this.head = newNode;
     this.length++;
     return this;
   }
 
-  traverse(index) {
-    let currentNode = this.head;
-    let counter = 0;
-    while (currentNode) {
-      if (counter === index - 1) {
-        return currentNode;
-      }
-      currentNode = currentNode.next;
-      counter++;
-    }
+  remove(index) {
+    const targetNode = this.traverse(index - 1);
+    targetNode.next = targetNode.next.next;
+    this.length--;
   }
 }
 
@@ -76,5 +83,8 @@ myLinkedList.insert(4, 300);
 myLinkedList.insert(10, 300);
 myLinkedList.insert(0, 19);
 myLinkedList.insert(12, 70);
+myLinkedList.remove(11);
+myLinkedList.remove(10);
+myLinkedList.remove(1);
 
 console.log(myLinkedList.printList());
