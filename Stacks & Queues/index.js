@@ -78,17 +78,59 @@ class Stack {
   }
 }
 
-const myStack = new Stack();
+// const myStack = new Stack();
 
-myStack.push("google");
-myStack.push("udemy");
-myStack.push("discord");
+// myStack.push("google");
+// myStack.push("udemy");
+// myStack.push("discord");
 
 // console.log(myStack.bottom);
-console.log(myStack.peek());
-console.log(myStack.pop());
-console.log(myStack.peek());
-console.log(myStack.pop());
-console.log(myStack.peek());
-console.log(myStack.pop());
-console.log(myStack);
+// console.log(myStack.peek());
+// console.log(myStack.pop());
+// console.log(myStack.peek());
+// console.log(myStack.pop());
+// console.log(myStack.peek());
+// console.log(myStack.pop());
+// console.log(myStack);
+
+class Queue {
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.length = 0;
+  }
+  peek() {
+    return this.first;
+  }
+  enqueue(value) {
+    const newNode = new Node(value);
+    if (!this.first) this.first = this.last = newNode;
+    else {
+      this.last.next = newNode;
+      this.last = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  dequeue() {
+    if (!this.first) return null;
+    const removedNode = this.first;
+    this.first = this.first.next;
+    this.length--;
+    if (this.length === 0) this.last = null;
+    return removedNode;
+  }
+  //isEmpty;
+}
+
+const myQueue = new Queue();
+
+console.log(myQueue.enqueue(3));
+console.log(myQueue.enqueue(4));
+console.log(myQueue.enqueue(5));
+
+console.log(myQueue.dequeue());
+console.log(myQueue.dequeue());
+console.log(myQueue.dequeue());
+console.log(myQueue.dequeue());
+console.log(myQueue);
