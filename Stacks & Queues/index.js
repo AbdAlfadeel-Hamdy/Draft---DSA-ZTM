@@ -6,14 +6,17 @@ class Node {
 }
 
 class Stack {
-  constructor() {
-    this.top = null;
-    this.bottom = null;
-    this.length = 0;
-  }
-  peek() {
-    return this.top;
-  }
+  // Using LinkedLists
+
+  // constructor() {
+  // this.top = null;
+  // this.bottom = null;
+  // this.length = 0;
+  // }
+  // peek() {
+  //   return this.top;
+  // }
+
   // Solution 1 "Adding to the tail"
   // push(value) {
   //   const newNode = new Node(value);
@@ -39,24 +42,39 @@ class Stack {
   // }
 
   // Solution 2 "Adding to the head"
+  // push(value) {
+  //   const newNode = new Node(value);
+  //   if (this.length === 0) this.top = this.bottom = newNode;
+  //   else {
+  //     const lastTopNode = this.top;
+  //     this.top = newNode;
+  //     this.top.next = lastTopNode;
+  //   }
+  //   this.length++;
+  //   return this;
+  // }
+  // pop() {
+  //   if (!this.top) return null;
+  //   const removedNode = this.top;
+  //   this.top = this.top.next;
+  //   this.length--;
+  //   if (this.length === 0) this.bottom = null;
+  //   return removedNode;
+  // }
+
+  // Using Arrays
+  constructor() {
+    this.array = [];
+  }
+  peek() {
+    return this.array[this.array.length - 1];
+  }
   push(value) {
-    const newNode = new Node(value);
-    if (this.length === 0) this.top = this.bottom = newNode;
-    else {
-      const lastTopNode = this.top;
-      this.top = newNode;
-      this.top.next = lastTopNode;
-    }
-    this.length++;
+    this.array.push(value);
     return this;
   }
   pop() {
-    if (!this.top) return null;
-    const removedNode = this.top;
-    this.top = this.top.next;
-    this.length--;
-    if (this.length === 0) this.bottom = null;
-    return removedNode;
+    return this.array.pop();
   }
 }
 
